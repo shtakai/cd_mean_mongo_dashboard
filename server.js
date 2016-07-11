@@ -80,6 +80,10 @@ app.get('/mongooses/new', function(req, res){
 })
 
 
+app.get('/mongooses/:id/edit', function(req, res){
+  console.log('edit');
+  req.render('edit');
+})
 
   //var name = faker.name.findName();
   //console.log('create ',name);
