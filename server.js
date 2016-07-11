@@ -45,6 +45,20 @@ app.get('/mongooses/new', function(req, res){
   res.render('new');
 })
 
+app.post('/mongooses', function(req, res){
+  console.log('create');
+  var _mongoose = new Mongoose();
+  _mongoose.name = faker.name.findName();
+  _mongoose.save(function(err){
+    if(err){
+      console.log('something went wrong', err);
+      res.json(err);
+    }else{
+      console.log('mongoose created', _mongoose);
+      res.redirect('/');
+    }
+  })
+})
 
 
 
