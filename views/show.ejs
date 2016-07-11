@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h2>One mongoose</h2>
+  <% if(mongoose){ %>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= mongoose._id %></td>
+          <td><%= mongoose.name%></td>
+        </tr>
+      </tbody>
+    </table>
+  <% } %>
+</body>
+</html>

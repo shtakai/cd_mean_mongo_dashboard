@@ -28,17 +28,32 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(req, res){
   console.log('access /');
-  var mongooses = Mongoose.find({}, function(err, mongooses){
+  var _mongooses_array = Mongoose.find({}, function(err, _mongooses){
     if(err){
       console.log('something went wrong', err);
       res.json(err);
     }else{
       console.log('get mongooses');
-      res.render('index',{mongooses: mongooses});
+      res.render('index',{mongooses: _mongooses});
     }
   })
 })
 
+app.get('/mongooses/:id', function(req,res){
+  Mongoose.findOne(
+    {
+      _id: req.params.id
+    }, function(err, _mongoose ){
+      if(err){
+        console.log('something went wrong', err);
+        res.json(err);
+      }else{
+        console.log('get one mongoose', _mongoose);
+        res.render('show',{mongoose: _mongoose});
+      }
+    }
+  )
+})
 
   //var name = faker.name.findName();
   //console.log('create ',name);
