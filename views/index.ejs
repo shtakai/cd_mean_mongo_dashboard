@@ -5,6 +5,17 @@
   <title></title>
 </head>
 <body>
-  <h2>index.ejs</h2>
+  <h2>Mongooses</h2>
+  <% if(mongooses){ %>
+    <ol>
+      <% for(var m of mongooses) { %>
+        <li>
+          <a href="/mongooses/<%= m.id %>">
+            <%= m.name %>
+          </a>
+        </li>
+      <% } %>
+    </ol>
+  <% } %>
 </body>
 </html>

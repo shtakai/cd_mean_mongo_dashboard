@@ -1,3 +1,4 @@
+var faker = require('faker');
 var express = require('express');
 var app = express();
 
@@ -27,10 +28,33 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(req, res){
   console.log('access /');
-  res.render('index');
+  var mongooses = Mongoose.find({}, function(err, mongooses){
+    if(err){
+      console.log('something went wrong', err);
+      res.json(err);
+    }else{
+      console.log('get mongooses');
+      res.render('index',{mongooses: mongooses});
+    }
+  })
 })
 
 
+  //var name = faker.name.findName();
+  //console.log('create ',name);
+  //var hamstar = new Mongoose({
+    //name: name
+  //});
+  //hamstar.save(function(err){
+    //if(err){
+      //console.log('something went wrong');
+      //res.json(err);
+    //}
+    //else{
+      //console.log('saved ;)', hamstar);
+      //res.redirect('index');
+    //}
+  //})
 
 var server = app.listen(8000, function(){
   console.log('listening on port 8000');
