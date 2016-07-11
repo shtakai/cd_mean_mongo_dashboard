@@ -39,6 +39,16 @@ app.get('/', function(req, res){
   })
 })
 
+// new is over the /:id
+app.get('/mongooses/new', function(req, res){
+  console.log('new');
+  res.render('new');
+})
+
+
+
+
+
 app.get('/mongooses/:id', function(req,res){
   console.log('show', req.params.id);
   Mongoose.findOne(
@@ -74,10 +84,6 @@ app.get('/mongooses/:id/destroy', function(req,res){
 })
 
 
-app.get('/mongooses/new', function(req, res){
-  console.log('new');
-  req.render('new');
-})
 
 
 app.get('/mongooses/:id/edit', function(req, res){
