@@ -47,8 +47,9 @@ app.get('/mongooses/new', function(req, res){
 
 app.post('/mongooses', function(req, res){
   console.log('create');
+  console.log('req.body', req.body);
   var _mongoose = new Mongoose();
-  _mongoose.name = faker.name.findName();
+  _mongoose.name = req.body.name;
   _mongoose.save(function(err){
     if(err){
       console.log('something went wrong', err);
@@ -104,22 +105,6 @@ app.get('/mongooses/:id/edit', function(req, res){
   console.log('edit');
   req.render('edit');
 })
-
-  //var name = faker.name.findName();
-  //console.log('create ',name);
-  //var hamstar = new Mongoose({
-    //name: name
-  //});
-  //hamstar.save(function(err){
-    //if(err){
-      //console.log('something went wrong');
-      //res.json(err);
-    //}
-    //else{
-      //console.log('saved ;)', hamstar);
-      //res.redirect('index');
-    //}
-  //})
 
 var server = app.listen(8000, function(){
   console.log('listening on port 8000');
