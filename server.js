@@ -16,6 +16,8 @@ mongoose.connect('mongodb://localhost/m_dashboard');
 // Schema
 var MongooseSchema = new mongoose.Schema({
   name: String
+},{
+  timestamps: true
 });
 
 mongoose.model('Mongoose', MongooseSchema);
@@ -112,6 +114,24 @@ app.get('/mongooses/:id/edit', function(req, res){
         res.render('edit',{mongoose: _mongoose});
       }
     }
+  )
+})
+
+app.post('/mongooses/:id/', function(req, res){
+  console.log('update',req.params.id);
+  console.log('req.body', req.body);
+  Mongoose.update(
+    {_id: req.params.id},
+    {name: req.body.name}
+    ,function(err){
+    if(err){
+      console.log('something went wrong',err);
+      res.json(err);
+    }else{
+      console.log('update okay ok ok');
+      res.redirect('/');
+    }
+  }
   )
 })
 
