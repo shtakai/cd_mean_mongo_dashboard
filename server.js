@@ -40,6 +40,7 @@ app.get('/', function(req, res){
 })
 
 app.get('/mongooses/:id', function(req,res){
+  console.log('show', req.params.id);
   Mongoose.findOne(
     {
       _id: req.params.id
@@ -55,6 +56,22 @@ app.get('/mongooses/:id', function(req,res){
   )
 })
 
+app.get('/mongooses/:id/destroy', function(req,res){
+  console.log('destroy', req.params.id);
+  Mongoose.remove(
+    {
+      _id: req.params.id
+    }, function(err ){
+      if(err){
+        console.log('something went wrong', err);
+        res.json(err);
+      }else{
+        console.log('destroy one mongoose', req.params.id);
+        res.redirect('/');
+      }
+    }
+  )
+})
   //var name = faker.name.findName();
   //console.log('create ',name);
   //var hamstar = new Mongoose({
