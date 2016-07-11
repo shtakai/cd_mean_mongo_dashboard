@@ -103,7 +103,7 @@ app.get('/mongooses/:id/destroy', function(req,res){
 
 app.get('/mongooses/:id/edit', function(req, res){
   console.log('edit');
-  req.render('edit');
+  res.render('edit');
 })
 
 var server = app.listen(8000, function(){
