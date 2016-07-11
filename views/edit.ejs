@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h2>Edit Mongoose</h2>
+  <% if(mongoose){ %>
+    <form action="/mongooses/<%= mongoose._id %>" method="post">
+      <input type="text" name="name" placeholder="name" value="<%= mongoose.name %>">
+      <input type="submit" value"Create">
+    </form>
+  <% }else{ %>
+    cannot get mongoose
+  <% }%>
+</body>
+</html>

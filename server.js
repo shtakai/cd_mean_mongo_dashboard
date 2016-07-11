@@ -98,12 +98,21 @@ app.get('/mongooses/:id/destroy', function(req,res){
   )
 })
 
-
-
-
 app.get('/mongooses/:id/edit', function(req, res){
   console.log('edit');
-  res.render('edit');
+  Mongoose.findOne(
+    {
+      _id: req.params.id
+    }, function(err, _mongoose ){
+      if(err){
+        console.log('something went wrong', err);
+        res.json(err);
+      }else{
+        console.log('get one mongoose', _mongoose);
+        res.render('edit',{mongoose: _mongoose});
+      }
+    }
+  )
 })
 
 var server = app.listen(8000, function(){
