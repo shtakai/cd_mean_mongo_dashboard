@@ -72,6 +72,15 @@ app.get('/mongooses/:id/destroy', function(req,res){
     }
   )
 })
+
+
+app.get('/mongooses/new', function(req, res){
+  console.log('new');
+  req.render('new');
+})
+
+
+
   //var name = faker.name.findName();
   //console.log('create ',name);
   //var hamstar = new Mongoose({
