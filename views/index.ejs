@@ -6,16 +6,33 @@
 </head>
 <body>
   <h2>Mongooses</h2>
+  <form action="/mongooses/new" method="POST">
+    <input type="submit" value="New Mongoose">
+  </form>
   <% if(mongooses){ %>
-    <ol>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+
       <% for(var m of mongooses) { %>
-        <li>
-          <a href="/mongooses/<%= m.id %>">
-            <%= m.name %>
-          </a>
-        </li>
+        <tr>
+          <td><%= m._id %></td>
+          <td><%= m.name%></td>
+          <td>
+            <a href="<%= m._id %>">Delete</a>
+            edit
+          </td>
+        </tr>
       <% } %>
-    </ol>
+      </tbody>
+    </table>
   <% } %>
 </body>
 </html>
