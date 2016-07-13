@@ -38,6 +38,8 @@ app.set('view engine', 'ejs');
   //mongooses_update: function(req, res){},
 //}
 
+let routes_setter = require('./server/config/routes.js');
+routes_setter(app);
 
 let server = app.listen(8000, function(){
   console.log('listening on port 8000');
