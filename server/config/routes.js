@@ -1,113 +1,30 @@
 const mongoose = require('mongoose');
 const Mongoose = mongoose.model('Mongoose');
 
+let mongoosesController = require('../controllers/mongooses.js');
+
 module.exports = function(app){
 
   app.get('/', function(req, res){
-    console.log('access /');
-    let _mongooses_array = Mongoose.find({}, function(err, _mongooses){
-      if(err){
-        console.log('something went wrong', err);
-        res.json(err);
-      }else{
-        console.log('get mongooses');
-        res.render('index',{mongooses: _mongooses});
-      }
-    })
+    mongoosesController.mongooses_index(req, res);
   })
-
-  // new is over the /:id
   app.get('/mongooses/new', function(req, res){
-    console.log('new');
-    res.render('new');
+    mongoosesController.mongooses_new(req, res);
   })
-
   app.post('/mongooses', function(req, res){
-    console.log('create');
-    console.log('req.body', req.body);
-    let _mongoose = new Mongoose();
-    _mongoose.name = req.body.name;
-    _mongoose.save(function(err){
-      if(err){
-        console.log('something went wrong', err);
-        res.json(err);
-      }else{
-        console.log('mongoose created', _mongoose);
-        res.redirect('/');
-      }
-    })
+    mongoosesController.mongooses_create(req, res);
   })
-
-
-
-
   app.get('/mongooses/:id', function(req,res){
-    console.log('show', req.params.id);
-    Mongoose.findOne(
-      {
-        _id: req.params.id
-      }, function(err, _mongoose ){
-        if(err){
-          console.log('something went wrong', err);
-          res.json(err);
-        }else{
-          console.log('get one mongoose', _mongoose);
-          res.render('show',{mongoose: _mongoose});
-        }
-      }
-    )
+    mongoosesController.mongooses_show(req, res);
   })
-
   app.get('/mongooses/:id/destroy', function(req,res){
-    console.log('destroy', req.params.id);
-    Mongoose.remove(
-      {
-        _id: req.params.id
-      }, function(err ){
-        if(err){
-          console.log('something went wrong', err);
-          res.json(err);
-        }else{
-          console.log('destroy one mongoose', req.params.id);
-          res.redirect('/');
-        }
-      }
-    )
+    mongoosesController.mongooses_destroy(req, res);
   })
-
   app.get('/mongooses/:id/edit', function(req, res){
-    console.log('edit');
-    Mongoose.findOne(
-      {
-        _id: req.params.id
-      }, function(err, _mongoose ){
-        if(err){
-          console.log('something went wrong', err);
-          res.json(err);
-        }else{
-          console.log('get one mongoose', _mongoose);
-          res.render('edit',{mongoose: _mongoose});
-        }
-      }
-    )
+    mongoosesController.mongooses_edit(req, res);
   })
-
   app.post('/mongooses/:id/', function(req, res){
-    console.log('update',req.params.id);
-    console.log('req.body', req.body);
-    Mongoose.update(
-      {_id: req.params.id},
-      {name: req.body.name}
-      ,function(err){
-        if(err){
-          console.log('something went wrong',err);
-          res.json(err);
-        }else{
-          console.log('update okay ok ok');
-          res.redirect('/');
-        }
-      }
-    )
+    mongoosesController.mongooses_update(req, res);
   })
 
 }
