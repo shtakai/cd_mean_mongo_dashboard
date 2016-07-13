@@ -4,7 +4,9 @@ const Mongoose = mongoose.model('Mongoose');
 module.exports = {
   mongooses_index: function(req, res){
     console.log('access /');
-    let _mongooses_array = Mongoose.find({}, function(err, _mongooses){
+    let _mongooses_array = Mongoose.find({}).
+    sort({createdAt: -1}).
+    exec(function(err, _mongooses){
       if(err){
         console.log('something went wrong', err);
         res.json(err);
