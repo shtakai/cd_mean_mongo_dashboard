@@ -1,4 +1,5 @@
-
+const mongoose = require('mongoose');
+const Mongoose = mongoose.model('Mongoose');
 
 module.exports = function(app){
 
