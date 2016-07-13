@@ -28,6 +28,17 @@ app.use(express.static(path.join(__dirname, './static')));
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'ejs');
 
+
+var mongoosesController = {
+  mongooses_new: function(req, res){},
+  mongooses_create: function(req,res){},
+  mongooses_show: function(req, res){},
+  mongooses_destroy: function(req, res){},
+  mongooses_edit: function(req, res){},
+  mongooses_update: function(req, res){},
+}
+
+
 app.get('/', function(req, res){
   console.log('access /');
   var _mongooses_array = Mongoose.find({}, function(err, _mongooses){
