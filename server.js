@@ -1,27 +1,27 @@
-var faker = require('faker');
-var express = require('express');
-var app = express();
+const faker = require('faker');
+let express = require('express');
+let app = express();
 
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var path = require('path');
+const path = require('path');
 
 // initialize and connect mongoose
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/m_dashboard');
 
 
 // Schema
-var MongooseSchema = new mongoose.Schema({
+const MongooseSchema = new mongoose.Schema({
   name: String
 },{
   timestamps: true
 });
 
 mongoose.model('Mongoose', MongooseSchema);
-var Mongoose = mongoose.model('Mongoose');
+const Mongoose = mongoose.model('Mongoose');
 
 
 app.use(express.static(path.join(__dirname, './static')));
@@ -29,7 +29,7 @@ app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'ejs');
 
 
-var mongoosesController = {
+const mongoosesController = {
   mongooses_new: function(req, res){},
   mongooses_create: function(req,res){},
   mongooses_show: function(req, res){},
@@ -41,7 +41,7 @@ var mongoosesController = {
 
 app.get('/', function(req, res){
   console.log('access /');
-  var _mongooses_array = Mongoose.find({}, function(err, _mongooses){
+  let _mongooses_array = Mongoose.find({}, function(err, _mongooses){
     if(err){
       console.log('something went wrong', err);
       res.json(err);
@@ -61,7 +61,7 @@ app.get('/mongooses/new', function(req, res){
 app.post('/mongooses', function(req, res){
   console.log('create');
   console.log('req.body', req.body);
-  var _mongoose = new Mongoose();
+  let _mongoose = new Mongoose();
   _mongoose.name = req.body.name;
   _mongoose.save(function(err){
     if(err){
@@ -146,7 +146,7 @@ app.post('/mongooses/:id/', function(req, res){
   )
 })
 
-var server = app.listen(8000, function(){
+let server = app.listen(8000, function(){
   console.log('listening on port 8000');
 })
 
