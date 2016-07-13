@@ -13,15 +13,6 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/m_dashboard');
 
 
-// Schema
-const MongooseSchema = new mongoose.Schema({
-  name: String
-},{
-  timestamps: true
-});
-
-mongoose.model('Mongoose', MongooseSchema);
-const Mongoose = mongoose.model('Mongoose');
 
 
 app.use(express.static(path.join(__dirname, './static')));
