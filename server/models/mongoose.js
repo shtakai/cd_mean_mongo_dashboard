@@ -1,6 +1,4 @@
-const mongoose = require('mongoose');
-
-
+mongoose = require('mongoose');
 // Schema
 const MongooseSchema = new mongoose.Schema({
   name: String
@@ -8,4 +6,4 @@ const MongooseSchema = new mongoose.Schema({
   timestamps: true
 });
 
-mongoose.model('Mongoose', MongooseSchema);
+const Mongoose = mongoose.model('Mongoose', MongooseSchema);
